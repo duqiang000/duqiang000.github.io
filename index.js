@@ -40,7 +40,13 @@ function getInfo() {
 - finishLoadTime: 完成加载时间
 - firstPaintAfterLoadTime: 加载后首次绘制时间
 - firstPaintTime: 首次绘制时间
-- navigationType: 导航类型
+- navigationType: 导航类型 
+    1. "typed" - 用户直接在地址栏输入网址或使用书签等方式访问页面。
+    2. "auto_bookmark" - 用户通过浏览器的书签栏访问页面。
+    3. "auto_subframe" - 页面是通过其他页面的 iframe 或框架加载的。
+    4. "manual_subframe" - 用户手动点击链接或执行 JavaScript 代码加载的子框架。
+    5. "generated" - 页面是通过 JavaScript 代码或浏览器插件生成的。
+    6. "reload" - 用户通过刷新页面或重新加载页面来访问页面。
 - npnNegotiatedProtocol: NPN协议
 - requestTime: 请求时间
 - startLoadTime: 开始加载时间
@@ -76,7 +82,7 @@ function getInfo() {
      */
     x = function() {
         try {
-            
+
             var e = K();
             // 控制台输出10000个空格
             console.log("        ".repeat(1E4));
@@ -278,11 +284,17 @@ function getInfo() {
          * 这个函数返回一个包含设备的各种属性和特征的数组，包括设备的最小宽度和高度、指针类型、悬停类型、色域、动态范围和显示模式等。
          * 该函数的目的是获取设备的属性和特征，以便根据这些属性和特征来进行适当的响应式设计和开发
          * 
-1. 1或0，代表设备是否支持粗略或精细指针。
-2. 1或0，代表设备是否支持悬停。
-3. 1、2或3，代表设备的色域类型。
-4. 1或0，代表设备是否支持高动态范围。
-5. 1、2、3、4或5，代表设备的显示模式。
+该函数的返回项分别代表以下内容：
+
+1. 设备最小宽度（以厘米为单位）
+2. 设备最小高度（以厘米为单位）
+3. 设备最小宽度（以像素为单位）
+4. 设备最小高度（以像素为单位）
+5. 指针类型（0为未知，1为粗糙，2为精细）
+6. 悬停类型（0为未知，1为无悬停，2为有悬停）
+7. 颜色空间（0为未知，1为rec2020，2为p3，3为srgb）
+8. 动态范围（0为未知，1为高，2为标准）
+9. 显示模式（0为未知，1为全屏，2为独立应用，3为最小化界面，4为窗口控件覆盖，5为浏览器）
          */
     x = function() {
         try {
@@ -493,6 +505,36 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
     obj.MouseEvent_WEBKIT_FORCE_AT_MOUSE_DOWN = MouseEvent.WEBKIT_FORCE_AT_MOUSE_DOWN;
     obj.screen_orientation_type = screen.orientation.type;
     obj.screen = screen;
+    // // - navigator.userAgent：浏览器的用户代理字符串，包含浏览器名称、版本、操作系统等信息。
+    // n("navigator.userAgent");
+    // // - navigator.appVersion：浏览器的版本信息，包括浏览器名称、版本、操作系统等信息。
+    // n("navigator.appVersion");
+    // // - navigator.appCodeName：浏览器的代码名称，通常是“Mozilla”。
+    // n("navigator.appCodeName");
+    // // - navigator.appMinorVersion：浏览器的次要版本号。
+    // n("navigator.appMinorVersion");
+    // // - navigator.product：浏览器的产品名称，通常是“Gecko”。
+    // n("navigator.product");
+    // // - navigator.productSub：浏览器的产品子版本号。
+    // n("navigator.productSub");
+    // // - navigator.vendor：浏览器的厂商名称。
+    // n("navigator.vendor");
+    // // - navigator.vendorSub：浏览器的厂商子版本号。
+    // n("navigator.vendorSub");
+    // // - navigator.buildID：浏览器的构建标识符。
+    // n("navigator.buildID");
+    // // - navigator.platform：浏览器所在的操作系统平台。
+    // n("navigator.platform");
+    // // - navigator.cpuClass：浏览器所在的CPU类别。
+    // n("navigator.cpuClass");
+    // // - navigator.oscpu：浏览器所在的操作系统及其版本号。
+    // n("navigator.oscpu");
+    // // 表示当前设备的 CPU 核心数
+    // n("navigator.hardwareConcurrency");
+    // // 表示当前设备支持的最大触摸点数
+    // n("navigator.maxTouchPoints");
+    // // 表示当前设备在 Microsoft Edge 浏览器中支持的最大触摸点数
+    // n("navigator.msMaxTouchPoints");
     obj.navigator_userAgent = navigator.userAgent;
     obj.navigator_appVersion = navigator.appVersion;
     obj.navigator_appCodeName = navigator.appCodeName;
@@ -508,6 +550,28 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
     obj.navigator_hardwareConcurrency = navigator.hardwareConcurrency;
     obj.navigator_maxTouchPoints = navigator.maxTouchPoints;
     obj.navigator_msMaxTouchPoints = navigator.msMaxTouchPoints;
+    //   // 表示当前浏览器的界面语言
+    //   n("navigator.language");
+    //   n("navigator.languages.toString()");
+    //   n("navigator.browserLanguage");
+    //   // 表示当前浏览器用户的首选语言
+    //   n("navigator.userLanguage");
+    //   // 表示当前操作系统的默认语言
+    //   n("navigator.systemLanguage");
+    //   // 表示设备是否连接到互联网
+    //   n("navigator.onLine");
+    //   // 表示设备的内存容量。
+    //   n("navigator.deviceMemory");
+    //   // 表示用户是否启用了“不跟踪”（Do Not Track）选项
+    //   n("navigator.doNotTrack");
+    //   // 表示用户是否启用了IE浏览器的“不跟踪”选项
+    //   n("navigator.msDoNotTrack");
+    //   // 表示浏览器是否启用了cookie
+    //   n("navigator.cookieEnabled");
+    //   // 表示设备电池的剩余电量，范围从0到1
+    //   n("navigator.battery.level");
+    //   // 表示设备电池是否正在充电
+    //   n("navigator.battery.charging");
     obj.navigator_language = navigator.language;
     obj.navigator_languages_toString = navigator.languages.toString();
     obj.navigator_browserLanguage = navigator.browserLanguage;
@@ -539,8 +603,21 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
     }
 
     obj.newDate = new Date();
+    // //  (new Date).getTimezoneOffset() - 返回当前设备所在时区与UTC时间的分钟差值
     obj.getTimezoneOffset = (new Date).getTimezoneOffset();
     if (navigator.connection) {
+        // // 返回当前设备的网络连接类型，如wifi、2g、3g、4g等
+        // n("navigator.connection.type");
+        // // 返回当前设备的有效网络连接类型，即当前网络的实际带宽状况，如slow-2g、2g、3g、4g等
+        // n("navigator.connection.effectiveType");
+        // // 返回当前设备所在网络连接类型的最大带宽值，单位为Mbps。
+        // n("navigator.connection.downlinkMax");
+        // // 返回当前设备所在网络连接类型的实际带宽值，单位为Mbps
+        // n("navigator.connection.downlink");
+        // // 返回当前设备所在网络连接类型的往返延迟时间，单位为ms
+        // n("navigator.connection.rtt");
+        // // 返回当前设备是否开启了数据节省模式，如果开启则返回true，否则返回false。
+        // n("navigator.connection.saveData");
         obj.navigator_connection_type = navigator.connection.type;
         obj.navigator_connection_effectiveType = navigator.connection.effectiveType;
         obj.navigator_connection_downlinkMax = navigator.connection.downlinkMax;
@@ -648,8 +725,10 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
     try {
         document.createEvent("TouchEvent");
         x = 1;
-    } catch (e) {}
-    x = 0
+    } catch (e) {
+        x = 0
+    }
+
 
     obj.isTouchEvent = x;
     /**
@@ -659,6 +738,7 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
 2. 第二个元素表示用户的操作系统平台；
 3. 第三个元素为一个数组，包含用户设备的品牌和版本信息。如果无法获取设备信息，则返回值为[-2, -2, -2]，如果用户设备不支持navigator.userAgentData，则返回值为[-1, -1, -1]。
          */
+    // userAgentData
     x = function() {
         try {
             if (!navigator.userAgentData)
@@ -923,10 +1003,41 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
     }();
     obj.external = x;
     console.log('返回测试数据', obj)
+    // 页面加载完成后执行
+    window.onload = function() {
+        // 获取textarea元素
+        var editorElement = document.getElementById('jsonObj');
+       
+        editorElement.innerHTML = syntaxHighlight(obj);
+   
+        
+      
+      
+    };
 
 }
 var tb = ['video/mp4; codecs="avc1.42E01E"', "Portable Document Format", 'video/mp4; codecs="avc1.42c00d"', "function appendChild() { [native code] }", "function RTCPeerConnection() { [native code] }", "internal-pdf-viewer", "function appendChild() {\n    [native code]\n}", "window.SecurityPolicyViolationEvent", 'video/mp4; codecs="ec-3"', "function SVGFESpecularLightingElement() { [native code] }", "[object Object]", "function ReadableByteStreamController() { [native code] }", "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Mobile Safari/537.36", "org.w3.clearkey", "function SecurityPolicyViolationEvent() { [native code] }", "function IntersectionObserver() { [native code] }", "function FileSystemWritableFileStream() { [native code] }", "window.SVGFESpecularLightingElement", "window.PerformanceObserverEntryList", "function PerformanceObserverEntryList() { [native code] }", "[object Navigator]", "function SpeechRecognitionEvent() { [native code] }", "window.ReadableByteStreamController", "function SVGFESpecularLightingElement() {\n    [native code]\n}", "QpUJAAAAAAAAGu98Hdz1l_lcSZ2rY60Ajjk9U1c", "WebGL 2.0 (OpenGL ES 3.0 Chromium)", "function eval() { [native code] }", "[object PluginArray]", "WebGL GLSL ES 3.00 (OpenGL ES GLSL ES 3.0 Chromium)", "function SpeechRecognitionErrorEvent() { [native code] }", "function SpeechRecognitionAlternative() {\n    [native code]\n}", "function IntersectionObserver() {\n    [native code]\n}", "function UserMessageHandlersNamespace() {\n    [native code]\n}", "function hasFocus() { [native code] }", "com.widevine.alpha", "function SecurityPolicyViolationEvent() {\n    [native code]\n}", "function animate() { [native code] }", "2ac5f361abddfe8cab168a8a50f2a592", "window.FileSystemWritableFileStream", "function toDataURL() {\n    [native code]\n}", "cade6a68bffb2358acd5d63a141ec064", "[object Screen]", "com.apple.fps.2_0", "function alert() { [native code] }", "function open() { [native code] }", "function RTCPeerConnection() {\n    [native code]\n}", "function toDataURL() { [native code] }", "function eval() {\n    [native code]\n}", "com.apple.speech.synthesis.voice.Bells", "function log() { [native code] }"];
-
+function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+        json = JSON.stringify(json, undefined, 4);
+    }
+    json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
 function E(e) {
     return -1 < tb.indexOf(e) ? "#" + tb.indexOf(e) : 0 === e ? "0" : 1 === e ? "1" : !1 === e ? "0" : !0 === e ? "1" : e instanceof Array ? e : e && e.toString ? e.toString() : ""
 }
