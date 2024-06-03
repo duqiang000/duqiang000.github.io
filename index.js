@@ -1007,7 +1007,7 @@ navigator.mimeTypes 是一个浏览器对象，它包含了浏览器支持的 MI
     window.onload = function() {
         // 获取textarea元素
         var editorElement = document.getElementById('jsonObj');
-       
+        
         editorElement.innerHTML = syntaxHighlight(obj);
    
         
